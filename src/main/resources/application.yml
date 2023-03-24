@@ -1,0 +1,56 @@
+server:
+  port: 8088
+
+spring:
+  security:
+    credentials:
+      user: 'customermanager'
+      pass: '$2y$10$BHHYBVKOYUGl4k94d7RZd.hySQ21SbzMtUJ7cy22RdPR3rz/I9JlO'
+  datasource:
+    url: jdbc:postgresql://localhost:5432/db_customer_manager
+    username: 'customermanager'
+    password: '19bbb17901dd90017dda9e2be4cc2dfdd41d8cd98f00b204e9800998ecf8427e'
+  jpa:
+    database: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  kafka:
+    producer:
+      bootstrap-servers: localhost:9092
+      group-id: group-analysis
+      topic: analysis
+      partitions: 2
+
+cloud:
+  aws:
+    key: 'YOUR_CREDENTIAL_KEY'
+    secret: 'YOUR_CREDENTIAL_SECRET'
+    bucket:
+      name: 'customer-manager'
+      path: 'customer-document-fraud-analysis'
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  metrics:
+    export:
+      prometheus:
+        enabled: true
+  endpoint:
+    health:
+      show-details: always
+    metrics:
+      enabled: false
+    prometheus:
+      enabled: true
+
+jwt:
+  secret: customer-manager-api
+
+security:
+  secret: 'customermanager'
+  salt: '123'
+  algorithm: PBKDF2WithHmacSHA256
