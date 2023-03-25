@@ -5,22 +5,23 @@ spring:
   security:
     credentials:
       user: 'customermanager'
-      pass: '$2y$10$BHHYBVKOYUGl4k94d7RZd.hySQ21SbzMtUJ7cy22RdPR3rz/I9JlO'
+      pass: 'admin'
   datasource:
-    url: jdbc:postgresql://localhost:5432/db_customer_manager
+    url: jdbc:postgresql://db:5432/db_customer_manager
     username: 'customermanager'
     password: '19bbb17901dd90017dda9e2be4cc2dfdd41d8cd98f00b204e9800998ecf8427e'
+
   jpa:
     database: postgresql
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
   kafka:
+    bootstrap-servers: kafka:9092
     producer:
-      bootstrap-servers: localhost:9092
       group-id: group-analysis
       topic: analysis
-      partitions: 2
+      partitions: 1
 
 cloud:
   aws:

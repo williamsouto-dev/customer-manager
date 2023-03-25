@@ -27,7 +27,7 @@ public class CustomerService implements ICustomerService {
     @Override
     public Customer create(Customer customer) {
         log.info("M=CustomerService.create customer={}", customer);
-        metric.registerCount(MetricType.COUNTER_REQUEST_CREATE_CUSTOMER);
+        metric.count(MetricType.COUNTER_REQUEST_CREATE_CUSTOMER);
 
         createAddress(customer);
         customer = customerPersistenceAdapter.create(customer);
@@ -77,7 +77,7 @@ public class CustomerService implements ICustomerService {
             success = Boolean.FALSE;
 
         } finally {
-            metric.registerCount(MetricType.COUNTER_ANALYSIS_STATUS, "status", String.valueOf(success));
+            metric.count(MetricType.COUNTER_ANALYSIS_STATUS, "status", String.valueOf(success));
         }
 
         return customerAnalysis;

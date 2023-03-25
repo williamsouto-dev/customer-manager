@@ -4,7 +4,7 @@ import com.example.customermanager.commons.enums.MetricType;
 
 public interface IPrometheusAdapter {
 
-    void registerCount(MetricType metricType);
+    void count(MetricType metricType);
 
-    void registerCount(MetricType metricType, String... tags);
+    void count(MetricType metricType, String... tags);
 }

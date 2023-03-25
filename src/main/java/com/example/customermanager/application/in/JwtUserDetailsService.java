@@ -5,6 +5,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 
@@ -20,7 +21,7 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         if (userApp.equals(username)) {
-            return new User(userApp, passApp, new ArrayList<>());
+            return new User(userApp, new BCryptPasswordEncoder().encode(passApp), new ArrayList<>());
         } else {
             throw new UsernameNotFoundException("User not found with username: " + username);
         }

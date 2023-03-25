@@ -13,12 +13,12 @@ public class PrometheusAdapter implements IPrometheusAdapter {
     private final MeterRegistry registry;
 
     @Override
-    public void registerCount(MetricType metricType) {
+    public void count(MetricType metricType) {
         registry.counter(metricType.getType()).increment();
     }
 
     @Override
-    public void registerCount(MetricType metricType, String... tags) {
+    public void count(MetricType metricType, String... tags) {
         registry.counter(metricType.getType(), tags).increment();
     }
 }

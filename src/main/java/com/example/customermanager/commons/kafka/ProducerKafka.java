@@ -16,7 +16,7 @@ import java.util.Map;
 @Configuration
 public class ProducerKafka {
 
-    @Value("${spring.kafka.producer.bootstrap-servers}")
+    @Value("${spring.kafka.bootstrap-servers}")
     private String server;
 
     @Value("${spring.kafka.producer.group-id}")
